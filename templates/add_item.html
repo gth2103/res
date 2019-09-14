@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand ml-4 brand" href="../home">
+        <img class="brand-img" src="../static/images/brand_img.png">
+        <span class="brand-title">
+            RES
+        </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../update" tabindex="-1" aria-disabled="false">Your Items</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../home" tabindex="-1" aria-disabled="false">Buy</a>
+            </li>
+        </ul>
+    <div>
+</nav>
+<div class="container-fluid">
+    <div class="row m-4">
+        <div class="col">
+            <h6>
+                Add Item
+            </h6>
+            <form id="add_item_form">
+                <div class="form-group">
+                    <label for="item-id">Item ID:</label>
+                    <input id="item-id" class="form-control" type="number" placeholder="{{item_index}}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input id="title" class="form-control" type="text" aria-describedby="titleHelp" placeholder="Enter title" minlength="2" required>
+                    <small id="titleHelp" class="form-text text-muted">Please enter the name of the item you wish to sell.</small>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input id="location" class="form-control" type="text" aria-describedby="locationHelp" placeholder="Enter location" minlength="2" required>
+                    <small id="locationHelp" class="form-text text-muted">Please enter the location of the item in the following format: State, City/Borough, Zip Code</small>
+                </div>
+                <div class="form-group">
+                    <label for="img">Image:</label>
+                    <input id="img" class="form-control" type="url" aria-describedby="imgHelp" placeholder="Enter image URL" required>
+                    <small id="imgHelp" class="form-text text-muted">Please enter the url of an image for the item. You can create one for free at: https://imgbb.com.</small>
+                </div>
+                <div class="form-group">
+                    <label for="categories">Categories: </label>
+                    <select multiple class="form-control" id="categories" required>
+                        <option>household</option>
+                        <option>furniture</option>
+                        <option>electronics</option>
+                        <option>appliances</option>
+                        <option>tools</option>
+                    </select>
+                    <small id="categoriesHelp" class="form-text text-muted">Choose one or more categories.</small>
+                </div>
+                <div class="form-group">
+                    <label for="textareaDetails">Details:</label>
+                    <textarea class="form-control" id="textareaDetails" rows="3" required></textarea>
+                    <small id="textareaDetailsHelp" class="form-text text-muted">Describe the item in the area above.</small>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label> $
+                    <input display='inline' id="price" class="form-control" type="number" min="0.00" max="10000.00" step="0.01" aria-describedby="priceHelp" placeholder="" minlength="5" required>
+                    <small id="priceHelp" class="form-text text-muted">Please enter the price of the item in the following format: dddd.cc</small>
+                </div>
+            </form>
+            <button id="submit_item" type="submit" class="btn btn-primary mb-5 float-right">Submit</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+
+        <script type="text/javascript" src="{{ url_for('static', filename = 'add_item.js') }}"></script>
+
+        <script type=text/javascript>
+            var item_index = {{item_index|tojson|safe}}
+        </script>
+
+{% endblock %}
