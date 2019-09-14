@@ -1,6 +1,6 @@
 import logging
 from flask import render_template, Response, request, jsonify, redirect, url_for
-from seed import *
+from seed import items, users
 from app import app
 
 sellers = []
@@ -53,8 +53,6 @@ def add_item():
 		categories = json_data["categories"]
 		details = json_data["details"]
 		price = json_data["price"]
-
-		print(price)
 
 		new_item_entry = {
 		    "user_id": user_id,
@@ -144,8 +142,6 @@ def update_item(item_id):
 	for item in items:
 		for key, value in item.items():
 			if (key == 'item_id'):
-				print(type(item_id))
-				print(type(value))
 				if(item_id == value):
 					current_item = item
 
@@ -188,11 +184,9 @@ def remove_request(item_id):
 
 		for key, value  in current_user.items():
 			if  (key == 'buyer'):
-				print(value)
 				for request_id in value:
 					if (request_id  == item_id):
 						value.remove(item_id)
-						print(value)
 
 		return redirect(url_for('requests'))
 	return render_template('requests.html')

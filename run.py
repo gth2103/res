@@ -1,4 +1,3 @@
-from seed import items, users
 from app import app, views
 
 if __name__ == '__main__':
