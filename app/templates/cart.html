@@ -39,13 +39,13 @@
     <div class="row m-4">
         <div class="col">
             <h6>
-                Requests
+                Cart
             </h6>
         </div>
     </div>
     <div class="row m-4">
         <div class="col">
-            <ul id="requests" class=" pl-0">
+            <ul id="cart" class=" pl-0">
             </ul> 
         </div>
     </div>
@@ -53,10 +53,10 @@
 {% endblock %}
 {% block javascript %}
 
-        <script type="text/javascript" src="{{ url_for('static', filename = 'requests.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'cart.js') }}"></script>
 
         <script type="text/javascript">
-            var requests = {{buyer_requests|tojson|safe}}
+            var cart_items = {{cart_items|tojson|safe}}
         </script>
 
         <script type="text/javascript">

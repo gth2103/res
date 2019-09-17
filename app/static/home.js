@@ -2,44 +2,48 @@ var getItems = function(){
 
     items.forEach(function(item){
 
-    	current_user_items = current_user.items_list
+        if(item != null && item.item_id != null){
 
-    	is_current_user_item = false;
+            current_user_items = current_user.items_list
 
-    	current_user_items.forEach(function(current_user_item){
+            is_current_user_item = false;
 
-    		if (item.item_id  === current_user_item){
-    			is_current_user_item = true;
-    		}
+            current_user_items.forEach(function(current_user_item){
 
-    	})
-    	var div = ""
-    	if (is_current_user_item){
+                if (item.item_id  === current_user_item){
+                    is_current_user_item = true;
+                }
+            })
 
-    		div = '<div class="col-3 my-5 text-center"><img class="item-thumbnail mb-4" src="' + item.image + '"><br>' + item.title + '<br><br><button id="' + item.item_id + '" class="view btn btn-outline-warning my-2 my-sm-0 text-center" type="submit">View</button></div>'
-    	}
-    	else {
+            var div = ""
 
-    		div = '<div class="col-3 my-5 text-center"><img class="item-thumbnail mb-4" src="' + item.image + '"><br>' + item.title + '<br><br><button id="' + item.item_id + '" class="view btn btn-outline-warning my-2 my-sm-0 ml-4 float-left" type="submit">View</button><button id="' + item.item_id + '" class="request btn btn-outline-primary my-2 my-sm-0 mr-4 float-right" type="submit">Request</button></div>'
-    	}
-    	$('#items').append(div)
+            if (is_current_user_item){
+
+                div = '<div class="col-3 my-5 text-center"><img class="item-thumbnail mb-4" src="' + item.image + '"><br>' + item.title + '<br><br><button id="' + item.item_id + '" class="view btn btn-outline-warning my-2 my-sm-0 text-center" type="submit">View</button></div>'
+            }
+            else {
+
+                div = '<div class="col-3 my-5 text-center"><img class="item-thumbnail mb-4" src="' + item.image + '"><br>' + item.title + '<br><br><button id="' + item.item_id + '" class="view btn btn-outline-warning my-2 my-sm-0 ml-4 float-left" type="submit">View</button><button id="' + item.item_id + '" class="add_to_cart btn btn-outline-primary my-2 my-sm-0 mr-4 float-right" type="submit">Add to cart</button></div>'
+            }
+            $('#items').append(div)
+        }
     })
-    request()
+    add_to_cart()
     view()
 }
 
-var send_request = function(new_request){
-	var request_to_add = new_request
+var add_item_to_cart = function(new_item){
+	var item_to_add = new_item
     $.ajax({
         type: "POST",
-        url: "send_request",                
+        url: "add_to_cart",                
         dataType : "json",
         contentType: "application/json; charset=utf-8",
-        data : JSON.stringify(request_to_add),
+        data : JSON.stringify(item_to_add),
         success: function(result){
             console.log(result);
-            var all_requests = result["buyers"]
-            alert("Your request has been sent. Click the 'Your Requests' tab in the menu to view your requests.")
+            var all_items = result["buyers"]
+            alert("Item has been added to cart. Click 'Cart' in the menu to view your items.")
         },
         error: function(request, status, error){
         	alert("Oops! Something went wrong. Please try again.")
@@ -69,19 +73,19 @@ var view_item = function(item_id){
 }
 
 
-var request = function(){
+var add_to_cart = function(){
 
-	$('.request').on('click', function(e){
+	$('.add_to_cart').on('click', function(e){
 
 		e.preventDefault()
 
-		var request_id = $(this).attr("id")
+		var item_id = $(this).attr("id")
 		var user_id
 		var seller = ""
 		var title = ""
 
 		items.forEach(function(item){
-			if(item.item_id == request_id){
+			if(item.item_id == item_id){
 				user_id = item.user_id
 				title = item.title
 			}
@@ -93,9 +97,9 @@ var request = function(){
 			}
 		})
 
-        var new_request = jQuery.parseJSON( '{ "request_id": "' + request_id + '", "user_id": "' + user_id + '", "seller": "' + seller + '", "title": "' + title + '" }')
+        var new_item = jQuery.parseJSON( '{ "item_id": "' + item_id + '", "user_id": "' + user_id + '", "seller": "' + seller + '", "title": "' + title + '" }')
 
-		send_request(new_request)
+		add_item_to_cart(new_item)
 	})
 }
 
@@ -113,16 +117,16 @@ var view = function(){
 
 }
 
-var requests = function(){
+var cart = function(){
 
-	$('.requests').on('click', function(){
-		window.location = '../requests'
+	$('.cart').on('click', function(){
+		window.location = '../cart'
 	})
 }
 
 $(document).ready(function(){
 
 	getItems();
-	requests()
+	cart()
 
 })

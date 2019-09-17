@@ -1,25 +1,28 @@
 
-var get_requests = function(){
+var get_cart_items = function(){
 
-	if (requests === undefined || requests.length == 0) {
+	if (cart_items === undefined || cart_items.length == 0) {
 
-		var div = '<li class="cart-item mt-2 mb-2"><hr>Your have not requested any items!</li>'
+		var div = '<li class="cart-item mt-2 mb-2"><hr>Your cart is  empty!</li>'
 
-    	$('#requests').append(div)
+    	$('#cart').append(div)
 	}
 	else {
-		requests.forEach(function(item_id){
+		cart_items.forEach(function(item_id){
 
 			var div = ""
 
 			items.forEach(function(item){
 
-				if(item.item_id == item_id) {
+                if(item != null && item.item_id != null){
 
-					div = '<li class="cart-item mt-2 mb-2"><hr><img class="item-mini mb-2" src="' + item.image + '"><span class="ml-5">' + item.title + '</span><button id="' + item.item_id + '" class="remove btn btn-outline-danger mt-4 mr-2 float-right" id="item-id" type="submit"> Remove </button><button id="' + item.item_id + '" class="view btn btn-outline-warning mt-4 mr-2 float-right" id="item-id" type="submit"> View </button></li>'
-				}
+                    if(item.item_id == item_id) {
+
+                        div = '<li class="cart-item mt-2 mb-2"><hr><img class="item-mini mb-2" src="' + item.image + '"><span class="ml-5">' + item.title + '</span><button id="' + item.item_id + '" class="remove btn btn-outline-danger mt-4 mr-2 float-right" id="item-id" type="submit"> Remove </button><button id="' + item.item_id + '" class="view btn btn-outline-warning mt-4 mr-2 float-right" id="item-id" type="submit"> View </button></li>'
+                    }
+                }
 			})
-    		$('#requests').append(div)
+    		$('#cart').append(div)
     	})
 	}
 
@@ -28,10 +31,10 @@ var get_requests = function(){
     view()
 }
 
-var remove_request = function(item_id){
+var remove_from_cart = function(item_id){
 	$.ajax({
         type: "POST",
-        url: "remove_request/" + item_id,                
+        url: "remove_from_cart/" + item_id,                
         success: function(result){
         	window.location.reload()
         },
@@ -53,13 +56,13 @@ var remove  = function(){
 
 		var item_id = $(this).attr("id")
 
-		remove_request(item_id)
+		remove_from_cart(item_id)
 
 
 	})
 }
 
-var view_request = function(item_id){
+var view_item = function(item_id){
     $.ajax({
         type: "POST",
         url: "view_item/" + item_id,                
@@ -84,7 +87,7 @@ var view = function(){
 
 		var item_id = $(this).attr("id")
 
-		view_request(item_id)
+		view_item(item_id)
 	})
 
 
@@ -99,6 +102,6 @@ var home = function(){
 
 $(document).ready(function(){
 
-	get_requests()
+	get_cart_items()
 	home()
 })

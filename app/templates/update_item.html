@@ -34,31 +34,31 @@
             <form id="update_item_form">
                 <div class="form-group">
                     <label for="item-id">Item ID:</label>
-                    <input id="item-id" class="form-control" type="number" placeholder="{{current_item.item_id}}" readonly>
+                    <input id="item-id" class="form-control" type="number" value="{{current_item.item_id}}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="title">Title:</label>
-                    <input id="title" class="form-control" type="text" aria-describedby="titleHelp" placeholder="{{current_item.title}}" minlength="2" required>
+                    <input id="title" class="form-control" type="text" aria-describedby="titleHelp" value="{{current_item.title}}" minlength="2" required>
                     <small id="titleHelp" class="form-text text-muted">Please enter the name of the item you wish to sell.</small>
                 </div>
                 <div class="form-group">
                     <label for="location">Location:</label>
-                    <input id="location" class="form-control" type="text" aria-describedby="locationHelp" placeholder="{{current_item.location}}" minlength="2" required>
+                    <input id="location" class="form-control" type="text" aria-describedby="locationHelp" value="{{current_item.location}}" minlength="2" required>
                     <small id="locationHelp" class="form-text text-muted">Please enter the location of the item in the following format: State, City/Borough, Zip Code</small>
                 </div>
                 <div class="form-group">
                     <label for="img">Image:</label>
-                    <input id="img" class="form-control" type="url" aria-describedby="imgHelp" placeholder="{{current_item.image}}" required>
+                    <input id="img" class="form-control" type="url" aria-describedby="imgHelp" value="{{current_item.image}}" required>
                     <small id="imgHelp" class="form-text text-muted">Please enter the url of an image for the item. You can create one for free at: https://imgbb.com.</small>
                 </div>
                 <div class="form-group">
                     <label for="textareaDetails">Details:</label>
-                    <textarea class="form-control" id="textareaDetails" placeholder="{{current_item.details}}" rows="3" required></textarea>
+                    <textarea class="form-control" id="textareaDetails" value="{{current_item.details}}" rows="3" required>{{current_item.details}}</textarea>
                     <small id="textareaDetailsHelp" class="form-text text-muted">Describe the item in the area above.</small>
                 </div>
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input id="price" class="form-control" type="text" aria-describedby="priceHelp" placeholder="{{current_item.price}}" minlength="5" required>
+                    <input id="price" class="form-control" type="text" aria-describedby="priceHelp" value="{{current_item.price}}" minlength="5" required>
                     <small id="priceHelp" class="form-text text-muted">Please enter the price of the item in the following format: $dd.cc</small>
                 </div>
             </form>
@@ -72,7 +72,7 @@
         <script type="text/javascript" src="{{ url_for('static', filename = 'update_item.js') }}"></script>
 
 
-        <script type=text/javascript>
+        <script type="text/javascript">
             var current_item = {{current_item|tojson|safe}}
         </script>
 

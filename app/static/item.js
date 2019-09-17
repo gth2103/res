@@ -17,7 +17,7 @@ var setUserOptions = function(){
     }
     else {
 
-    	div = '<br><button class="request btn btn-outline-primary m-5" type="submit">Request</button>'
+    	div = '<br><button class="add_to_cart btn btn-outline-primary m-5" type="submit">Add to Cart</button>'
     }
     $('#item-left-side').append(div);
 }
@@ -25,19 +25,19 @@ var setUserOptions = function(){
 
 
 
-var request = function(){
+var add_to_cart = function(){
 
-	$('.request').on('click', function(e){
+	$('.add_to_cart').on('click', function(e){
 
 		e.preventDefault()
 
-		var request_id = $(this).attr("id")
+		var item_id = $(this).attr("id")
 		var user_id
 		var seller = ""
 		var title = ""
 
 		items.forEach(function(item){
-			if(item.item_id == request_id){
+			if(item.item_id == item_id){
 				user_id = item.user_id
 				title = item.title
 			}
@@ -49,24 +49,24 @@ var request = function(){
 			}
 		})
 
-        var new_request = jQuery.parseJSON( '{ "request_id": "' + request_id + '", "user_id": "' + user_id + '", "seller": "' + seller + '", "title": "' + title + '" }')
+        var new_item = jQuery.parseJSON( '{ "item_id": "' + item_id + '", "user_id": "' + user_id + '", "seller": "' + seller + '", "title": "' + title + '" }')
 
-		send_request(new_request)
+		add_item_to_cart(new_item)
 	})
 }
 
-var send_request = function(new_request){
-	var request_to_add = new_request
+var add_item_to_cart = function(new_item){
+	var item_to_add = new_item
     $.ajax({
         type: "POST",
-        url: "send_request",                
+        url: "add_to_cart",                
         dataType : "json",
         contentType: "application/json; charset=utf-8",
-        data : JSON.stringify(request_to_add),
+        data : JSON.stringify(item_to_add),
         success: function(result){
             console.log(result);
-            var all_requests = result["requests"]
-            alert("Your request has been sent. Click the 'Your Requests' tab in the menu to view your requests.")
+            var all_items = result["buyers"]
+            alert("Item has been added to cart. Click 'Cart' in the menu to view your items.")
         },
         error: function(request, status, error){
         	alert("Oops! Something went wrong. Please try again.")
@@ -118,7 +118,7 @@ $(document).ready(function(){
 
 
 	setUserOptions()
-	request()
+	add_to_cart()
 	home()
 
 })

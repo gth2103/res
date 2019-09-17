@@ -31,7 +31,7 @@
             <form id="add_item_form">
                 <div class="form-group">
                     <label for="item-id">Item ID:</label>
-                    <input id="item-id" class="form-control" type="number" placeholder="{{item_index}}" readonly>
+                    <input id="item-id" class="form-control" type="number" placeholder="{{items_index}}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="title">Title:</label>
@@ -80,7 +80,7 @@
         <script type="text/javascript" src="{{ url_for('static', filename = 'add_item.js') }}"></script>
 
         <script type=text/javascript>
-            var item_index = {{item_index|tojson|safe}}
+            var items_index = {{items_index|tojson|safe}}
         </script>
 
 {% endblock %}
