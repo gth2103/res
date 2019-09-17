@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand ml-4 brand" href="../home">
-        <img class="brand-img" src="../static/images/brand_img.png">
+    <img class="brand-img ml-4" src="../static/images/brand_img.png">
+    <a class="navbar-brand brand" href="../home">
         <span class="brand-title">
             RES
         </span>
@@ -19,6 +19,8 @@
                     Categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="../buy">All Items</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Household</a>
                     <a class="dropdown-item" href="#">Furniture</a>
                     <a class="dropdown-item" href="#">Electronics</a>
@@ -27,10 +29,10 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../update" tabindex="-1" aria-disabled="false">Sell</a>
+                <a class="nav-link" href="../sell" tabindex="-1" aria-disabled="false">Sell</a>
             </li>
         </ul>
-        <button class="home btn btn-outline-secondary my-2 my-sm-0 mr-5 py-0" type="submit">
+        <button class="home btn btn-secondary my-2 my-sm-0 mr-5 py-0" type="submit">
             Home
         </button>
     <div>
@@ -38,9 +40,9 @@
 <div class="container-fluid">
     <div class="row m-4">
         <div class="col">
-            <h6>
+            <h5 class="text-uppercase mb-3">
                 Cart
-            </h6>
+            </h5>
         </div>
     </div>
     <div class="row m-4">

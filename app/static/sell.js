@@ -34,7 +34,7 @@ var  del_item = function(item_id) {
         type: "POST",
         url: "delete/" + item_id,                
         success: function(result){
-            window.location = '../update'
+            window.location = '../sell'
         },
         error: function(request, status, error){
             alert("Oops! Something went wrong. Please try again.")

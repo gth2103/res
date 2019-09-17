@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand ml-4 brand" href="../home">
-        <img class="brand-img" src="../static/images/brand_img.png">
+    <img class="brand-img ml-4" src="../static/images/brand_img.png">
+    <a class="navbar-brand brand" href="../home">
         <span class="brand-title">
             RES
         </span>
@@ -17,7 +17,7 @@
                 <a class="nav-link" href="../add_item" tabindex="-1" aria-disabled="false">Add Item</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../home" tabindex="-1" aria-disabled="false">Buy</a>
+                <a class="nav-link" href="../buy" tabindex="-1" aria-disabled="false">Buy</a>
             </li>
         </ul>
     <div>
@@ -25,12 +25,12 @@
 <div class="container-fluid">
     <div class="row m-4">
         <div class="col">
-            <h6>
+            <h5 class="text-uppercase mb-3">
                 Your Items
-            </h6>
+            </h5>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <input class="form-control mr-sm-2" type="search" placeholder="keyword, borough, or Zip Code." aria-label="Search">
+                <button class="btn btn-info my-2 my-sm-0" type="submit">
                     Search
                 </button>
             </form>
@@ -42,7 +42,7 @@
 {% endblock %}
 {% block javascript %}
 
-        <script type="text/javascript" src="{{ url_for('static', filename = 'update.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'sell.js') }}"></script>
 
         <script type="text/javascript">
             var items = {{items|tojson|safe}}

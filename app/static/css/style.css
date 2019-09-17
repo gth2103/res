@@ -8,7 +8,32 @@ footer {
     right: 0px;
 }
 
-.brand {
+a {
+    text-decoration:  none;
+}
+
+a:hover {
+    text-decoration:  none;
+}
+
+a:visited {
+    text-decoration:  none;
+}
+
+input[placeholder]{
+    text-overflow: ellipsis;
+}
+
+small {
+    color: #6c757d;
+}
+
+.brand-img:hover {
+    opacity: 0.6;
+}
+
+.brand-title:hover {
+    opacity: 0.6;
 }
 
 .brand-img {
@@ -17,6 +42,7 @@ footer {
 
 .brand-title {
     font-weight: bold;
+    color: #17a2b8;
 }
 
 .item-img {
@@ -26,8 +52,7 @@ footer {
 }
 
 .item-thumbnail {
-    max-height: 175px;
-    max-width: 175px;
+    height: 175px;
     border-radius: 10px;
 }
 
@@ -50,6 +75,84 @@ footer {
 	font-size: 24px;
 }
 
+.btn-info:hover {
+    background-color: #ffffff;
+    color: #17a2b8;
+}
+
+.btn-secondary:hover {
+    background-color: #ffffff;
+    color: #6c757d;
+}
+
+.add_to_cart.btn-outline-info {
+    border-radius: 0px;
+    border: none;
+    font-weight: bold;
+
+}
+
+.view.btn-outline-secondary {
+    border-radius: 0px;
+    border: none;
+    font-weight: bold;
+
+}
+
+.cart.btn {
+    border-radius: 0px;
+}
+
+.home.btn {
+    border-radius: 0px;
+}
+
+.item {
+    min-width: 280px !important;
+    max-width: 280px !important;
+    position: relative;
+
+}
+
+.item_title {
+    height: 24px !important;
+}
+
+.buy_sell_price {
+    color: red;
+    font-size: 18px;
+}
+
+#home {
+
+    background-image: url()
+}
+
 #cart {
     list-style: none;
 }
+
+#buy {
+    width: 200px;
+}
+
+#sell {
+    width: 200px;
+}
+
+#brand-img-home {
+    height: 72px;
+}
+
+#brand-title-home {
+    font-weight: bold;
+    font-size: 64px;
+}
+
+#brand-title-home:hover {
+    opacity: 0.6;
+    color: #17a2b8;
+}
+
+
+

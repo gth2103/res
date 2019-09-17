@@ -8,10 +8,29 @@ from app.users import users, users_index, current_user
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
+	return render_template('home.html')
+
+@app.route('/sell', methods=['GET', 'POST'])
+def sell():
+	global items
+	global current_user
+	return render_template('sell.html', current_user = current_user, items = items ) 
+
+@app.route('/cart', methods=['GET', 'POST'])
+def cart():
+	global current_user
+	global items
+
+	cart_items = get_value(current_user, 'buyer')
+
+	return render_template('cart.html', cart_items = cart_items, items = items)
+
+@app.route('/buy', methods=['GET', 'POST'])
+def buy():
 	global items
 	global current_user
 	global users
-	return render_template('home.html', items = items, current_user = current_user, users = users)
+	return render_template('buy.html', items = items, current_user = current_user, users = users)
 
 @app.route('/add_item', methods=['GET', 'POST'])
 def add_item():
@@ -94,21 +113,6 @@ def update_item(item_id):
 	else:
 		return render_template('update_item.html', current_item  = current_item)
 
-@app.route('/update', methods=['GET', 'POST'])
-def update():
-	global items
-	global current_user
-	return render_template('update.html', current_user = current_user, items = items ) 
-
-@app.route('/cart', methods=['GET', 'POST'])
-def cart():
-	global current_user
-	global items
-
-	cart_items = get_value(current_user, 'buyer')
-
-	return render_template('cart.html', cart_items = cart_items, items = items)
-
 @app.route('/remove_from_cart/<item_id>', methods=['GET', 'POST'])
 def remove_from_cart(item_id):
 	global current_user
@@ -132,4 +136,4 @@ def delete(item_id):
 
 	print(items[int(item_id)])
 
-	return redirect(url_for('update'))
+	return redirect(url_for('sell'))

@@ -66,7 +66,7 @@ var add_item_to_cart = function(new_item){
         success: function(result){
             console.log(result);
             var all_items = result["buyers"]
-            alert("Item has been added to cart. Click 'Cart' in the menu to view your items.")
+            alert("Item has been added to cart. Click 'Shopping Cart' in the menu to view your items.")
         },
         error: function(request, status, error){
         	alert("Oops! Something went wrong. Please try again.")

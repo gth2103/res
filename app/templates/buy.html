@@ -32,43 +32,47 @@
                 <a class="nav-link" href="../sell" tabindex="-1" aria-disabled="false">Sell</a>
             </li>
         </ul>
-        <button class="home btn btn-secondary my-2 my-sm-0 mr-5 py-0" type="submit">
-            Home
+        <button class="cart btn btn-secondary my-2 my-sm-0 mr-5 py-0" type="submit">
+            Shopping Cart
         </button>
     <div>
 </nav>
 <div class="container-fluid">
     <div class="row m-4">
-        <div id="item-left-side" class="col-6 mt-5 text-center">
-            <img class="item-img" src="{{item.image}}">
+        <div class="col">
+            <h5 class="text-uppercase mb-3">
+                All Items
+            </h5>
+            <hr>
+            <form class="form-inline mt-3 mb-0">
+                <input class="form-control mr-2" type="search" placeholder="keyword, borough, or Zip Code." aria-label="Search">
+                <button class="btn btn-info my-2" type="submit">
+                    Search
+                </button>
+            </form>
+            <small class="m-2">
+                Try searching to narrow your results.
+            </small>
         </div>
-        <div class="col-6 p-5">
-            <span class="title d-block ml-3 mr-3 mt-3 mb-1">{{item.title}}</span>
-            <span class="location text-secondary d-block ml-3 mr-3 mb-3">{{item.location}}</span>
-            <span class="price d-block m-3">${{item.price}}</span>
-            <span class="details d-block m-3 mt-4">{{item.details}}</span>
-        </div>
+    </div>
+    <div id="items" class="row m-4">
     </div>
 </div>
 {% endblock %}
 {% block javascript %}
 
-        <script type="text/javascript" src="{{ url_for('static', filename = 'item.js') }}"></script>
-
-        <script type="text/javascript">
-            var item = {{item|tojson|safe}}
-        </script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'buy.js') }}"></script>
 
         <script type="text/javascript">
             var items = {{items|tojson|safe}}
         </script>
 
         <script type="text/javascript">
-            var current_user = {{current_user|tojson|safe}}
+            var users = {{users|tojson|safe}}
         </script>
 
         <script type="text/javascript">
-            var users = {{users|tojson|safe}}
+            var current_user = {{current_user|tojson|safe}}
         </script>
 
 {% endblock %}
