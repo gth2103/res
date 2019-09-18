@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed">
     <img class="brand-img ml-4" src="../static/images/brand_img.png">
     <a class="navbar-brand brand" href="../home">
         <span class="brand-title">
@@ -37,15 +37,19 @@
         </button>
     <div>
 </nav>
-<div class="container-fluid">
-    <div class="row mt-4 ml-4">
+<div class="container-fluid position-relative m-0 pl-0 pr-3">
+    <div class="row">
+        <div class="col banner">
+        </div>
+    </div>
+    <div class="row ml-5">
         <div class="col">
             <h5 class="text-uppercase mb-3">
                 All Items
             </h5>
             <hr>
             <form class="form-inline mt-3 mb-0">
-                <input class="form-control mr-2" type="search" placeholder="keyword, borough, or Zip Code." aria-label="Search">
+                <input class="form-control mr-2" type="search" placeholder="keyword, borough, or Zip Code" aria-label="Search">
                 <button class="btn btn-info my-2" type="submit">
                     Search
                 </button>
@@ -55,7 +59,7 @@
             </small>
         </div>
     </div>
-    <div id="items" class="row ml-4">
+    <div id="items" class="row ml-5 pl-5 pl-sm-2">
     </div>
 </div>
 {% endblock %}
