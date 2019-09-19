@@ -19,11 +19,11 @@ var getItems = function(){
 
             if (is_current_user_item){
 
-                div = '<div class="item col-3 my-5 mx-3 text-center bg-white"><img accesskey="' + item.item_id + '" class="item-thumbnail mt-4 mb-4" src="' + item.image + '"><br><div class="item_title overflow-auto mb-1">' + item.title + '</div><p class="buy_sell_price m-1"> $' + item.price + '</p><button id="' + item.item_id + '" class="view btn btn-outline-secondary mt-0 mb-3 text-center" type="submit">View Item</button></div>'
+                div = '<div class="item col-3 my-5 mx-3 text-center bg-white overflow-auto"><img accesskey="' + item.item_id + '" class="item-thumbnail mt-4 mb-4" src="' + item.image + '"><br><div class="item_title overflow-auto mb-1">' + item.title + '</div><p class="buy_sell_price m-1"> $' + item.price + '</p><button id="' + item.item_id + '" class="view btn btn-outline-secondary mt-0 mb-3 text-center" type="submit">View Item</button></div>'
             }
             else {
 
-                div = '<div class="item col-3 my-5 mx-3 text-center bg-white"><img accesskey="' + item.item_id + '" class="item-thumbnail mt-4 mb-4" src="' + item.image + '"><br><div class="item_title overflow-auto mb-1">' + item.title + '</div><p class="buy_sell_price m-1"> $' + item.price + '</p><button id="' + item.item_id + '" class="view btn btn-outline-secondary mt-0 mb-3 ml-3 float-left" type="submit">View Item</button><button id="' + item.item_id + '" class="add_to_cart btn btn-outline-info mt-0 mb-3 mr-3 float-right" type="submit">Add to cart</button></div>'
+                div = '<div class="item col-3 my-5 mx-3 text-center bg-white overflow-auto"><img accesskey="' + item.item_id + '" class="item-thumbnail mt-4 mb-4" src="' + item.image + '"><br><div class="item_title overflow-auto mb-1">' + item.title + '</div><p class="buy_sell_price m-1"> $' + item.price + '</p><button id="' + item.item_id + '" class="view btn btn-outline-secondary mt-0 mb-3 ml-3 float-left" type="submit">View Item</button><button id="' + item.item_id + '" class="add_to_cart btn btn-outline-info mt-0 mb-3 mr-3 float-right" type="submit">Add to cart</button></div>'
             }
             $('#items').append(div)
         }
@@ -149,9 +149,10 @@ var do_slide_show = function()  {
     }
     var current_banner_image = "/static/images/banner_" + image_index++ + ".png"
 
-    $('.banner').css('background-image', 'url(' + current_banner_image + ')').fadeIn('3000', function(){
-            setTimeout(do_slide_show, 10000)
-    })
+    setTimeout(do_slide_show, 10000)
+
+    $('.banner').css('background-image', 'url(' + current_banner_image + ')')
+      
 }
 
 var set_previous = function() {
