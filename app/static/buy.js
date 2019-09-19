@@ -149,7 +149,7 @@ var do_slide_show = function()  {
     }
     var current_banner_image = "/static/images/banner_" + image_index++ + ".png"
 
-    setTimeout(do_slide_show, 10000)
+    setTimeout(do_slide_show, 15000)
 
     $('.banner').css('background-image', 'url(' + current_banner_image + ')')
       
