@@ -35,18 +35,31 @@ hr {
     border-color: rgb(245, 245, 245, 0.8);
 }
 
+img {
+    opacity: 0.9;
+}
+
+img:hover {
+    opacity: 1;
+}
+
 .btn-secondary{
     background-color: #b2b2b2;
     border-color: #b2b2b2;
 }
 
 .banner {
-    min-height: 630px;
+    min-height: 700px;
     background-image: url(../images/banner_0.png);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
     top: -30px;
+    box-shadow: 0px 3px rgb(240, 240, 240, 0.2);
+}
+
+.banner-wrapper {
+    min-height: 750px;
 }
 
 .navbar{
@@ -61,7 +74,7 @@ hr {
 }
 
 .brand-img:hover {
-    opacity: 0.6;
+    opacity: .9;
 }
 
 .brand-title:hover {
@@ -139,10 +152,15 @@ hr {
     border-radius: 0px;
 }
 
+.back.btn {
+    border-radius: 0px;
+}
+
 .item {
     min-width: 280px !important;
     max-width: 280px !important;
     position: relative;
+    border-radius: 5px;
 
 }
 
@@ -174,6 +192,7 @@ hr {
 
 #brand-img-home {
     height: 72px;
+    opacity: 1;
 }
 
 #brand-title-home {

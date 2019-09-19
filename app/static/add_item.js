@@ -21,18 +21,33 @@ var add_item = function(new_item){
     });
 }
 
-var form = $('#add_item_form')
 
-$(document).ready(function(){
 
-	form.validate()
+var get_previous = function(){
+    return localStorage.getItem("previous");
+}
 
-	$('#submit_item').on('click', function(e){
 
-		e.preventDefault()
+var cancel = function(){
 
-		var item_id = $('input#item-id').val()
-	    var title = $('input#title').val()
+    $('#cancel').on('click', function(){
+
+        location.href = get_previous()
+    })
+}
+
+var submit = function(){
+
+    var form = $('#add_item_form')
+
+    form.validate()
+
+    $('#submit_item').on('click', function(e){
+
+        e.preventDefault()
+
+        var item_id = $('input#item-id').val()
+        var title = $('input#title').val()
         var location = $('input#location').val()
         var image = $('input#img').val()
         var categories = $('input#categories').val()
@@ -43,6 +58,14 @@ $(document).ready(function(){
 
         var new_item = jQuery.parseJSON( '{ "item_id": "' + item_id + '", "title": "' + title + '", "location": "' + location + '", "image": "' + image + '",  "categories": "' + categories + '", "details": "' + details + '", "price": "' + price + '" }')
 
-		add_item(new_item)
-	})    
+        add_item(new_item)
+    })
+}
+
+$(document).ready(function(){
+
+    submit()
+    cancel()
+
+	    
 })

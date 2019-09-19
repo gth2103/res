@@ -7,7 +7,7 @@ var update_item = function(new_item){
         contentType: "application/json; charset=utf-8",
         data : JSON.stringify(item_to_add),
         success: function(result){
-            window.location = '../update'
+            window.location = '../sell'
             console.log(result);
             var all_items = result["items"]
             alert("Your item has been added.")
@@ -22,18 +22,18 @@ var update_item = function(new_item){
     });
 }
 
-var form = $('#update_item_form')
+var submit = function(){
 
-$(document).ready(function(){
+    var form = $('#update_item_form')
 
-	form.validate()
+    form.validate()
 
-	$('#submit_item').on('click', function(e){
+    $('#submit_item').on('click', function(e){
 
-		e.preventDefault()
+        e.preventDefault()
 
-		var item_id = $('input#item-id').val()
-	    var title = $('input#title').val()
+        var item_id = $('input#item-id').val()
+        var title = $('input#title').val()
         var location = $('input#location').val()
         var image = $('input#img').val()
         var categories = $('input#categories').val()
@@ -44,7 +44,28 @@ $(document).ready(function(){
 
         var new_item = jQuery.parseJSON( '{ "item_id": "' + item_id + '", "title": "' + title + '", "location": "' + location + '", "image": "' + image + '",  "categories": "' + categories + '", "details": "' + details + '\\\\", "price": "' + price + '" }')
 
+        // TODO: If form valid, update
 
-		update_item(new_item)
-	})    
+
+        update_item(new_item)
+    }) 
+}
+
+var get_previous = function(){
+    return localStorage.getItem("previous");
+}
+
+
+var cancel = function(){
+
+    $('#cancel').on('click', function(){
+
+        location.href = get_previous()
+    })
+}
+
+$(document).ready(function(){
+
+    submit()
+    cancel()	   
 })

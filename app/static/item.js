@@ -66,7 +66,7 @@ var add_item_to_cart = function(new_item){
         success: function(result){
             console.log(result);
             var all_items = result["buyers"]
-            alert("Item has been added to cart. Click 'Shopping Cart' in the menu to view your items.")
+            alert("Your item has been added! Click 'View Cart' in the menu to see it.")
         },
         error: function(request, status, error){
         	alert("Oops! Something went wrong. Please try again.")
@@ -113,12 +113,23 @@ var delete_item = function(){
     })
 }
 
+var get_previous = function(){
+    return localStorage.getItem("previous");
+}
+
+var back = function(){
+
+    $('.back').on('click', function(){
+
+        location.href = get_previous()
+    })
+}
+
 $(document).ready(function(){
-
-
 
 	setUserOptions()
 	add_to_cart()
 	home()
+    back()
 
 })

@@ -71,8 +71,21 @@ var delete_item = function(){
     })
 }
 
+var set_previous = function() {
+
+    var pathname = window.location.pathname;
+
+    localStorage.setItem("previous", ".." + pathname);
+
+    console.log(pathname)
+
+    console.log(localStorage.getItem("previous"))
+}
+
 $(document).ready(function(){
 
     getItems();
+
+    set_previous();
 
 })

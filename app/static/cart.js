@@ -100,8 +100,21 @@ var home = function(){
 	})
 }
 
+var get_previous = function(){
+    return localStorage.getItem("previous");
+}
+
+var back = function(){
+
+    $('.back').on('click', function(){
+
+        location.href = get_previous()
+    })
+}
+
 $(document).ready(function(){
 
 	get_cart_items()
 	home()
+    back()
 })
