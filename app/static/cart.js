@@ -18,7 +18,7 @@ var get_cart_items = function(){
 
                     if(item.item_id == item_id) {
 
-                        div = '<li class="cart-item mt-2 mb-2"><hr><img class="item-mini mb-2" src="' + item.image + '"><span class="ml-5">' + item.title + '</span><button id="' + item.item_id + '" class="remove btn btn-outline-danger mt-4 mr-2 float-right" id="item-id" type="submit"> Remove </button><button id="' + item.item_id + '" class="view btn btn-outline-warning mt-4 mr-2 float-right" id="item-id" type="submit"> View </button></li>'
+                        div = '<li class="cart-item mt-2 mb-2"><hr><img class="item-mini mb-2" src="' + item.image + '"><span class="ml-5">' + item.title + '</span><span class="ml-5 cart_price">$' + item.price + '</span><button id="' + item.item_id + '" class="remove btn btn-outline-danger mt-4 mr-2 float-right" type="submit"> Remove </button><button id="' + item.item_id + '" class="view btn btn-outline-warning mt-4 mr-2 float-right" type="submit"> View </button><button id="' + item.item_id + '" class="contact btn btn-outline-secondary mt-4 mr-2 float-right" type="submit"> Contact Seller</button></li>'
                     }
                 }
 			})
@@ -26,7 +26,7 @@ var get_cart_items = function(){
     	})
 	}
 
-    
+      
     remove()
     view()
 }

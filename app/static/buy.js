@@ -1,37 +1,88 @@
-var getItems = function(){
+var getItems = function(list){
 
-    items.forEach(function(item){
+    clearItems()
 
-        if(item != null && item.item_id != null){
+    if (list.length < 1) {
 
-            current_user_items = current_user.items_list
+        var div = '<div class="col-4 my-5 mx-3 p-5 text-center bg-white overflow-auto">Sorry, your search didn\'t return any results.</div>'
 
-            is_current_user_item = false;
+        $('#items').append(div)
+    }
+    else {
 
-            current_user_items.forEach(function(current_user_item){
+        list.forEach(function(item){
 
-                if (item.item_id  === current_user_item){
-                    is_current_user_item = true;
+            if(item != null && item.item_id != null){
+
+                current_user_items = current_user.items_list
+
+                is_current_user_item = false;
+
+                current_user_items.forEach(function(current_user_item){
+
+                    if (item.item_id  === current_user_item){
+                        is_current_user_item = true;
+                    }
+                })
+
+                var div = ""
+
+                if (is_current_user_item){
+
+                    div = '<div class="item col-3 my-5 mx-3 text-center bg-white overflow-auto"><img accesskey="' + item.item_id + '" class="item-thumbnail mt-4 mb-4" src="' + item.image + '"><br><div class="item_title overflow-auto mb-1">' + item.title + '</div><p class="buy_sell_price m-1"> $' + item.price + '</p><button id="' + item.item_id + '" class="view btn btn-outline-secondary mt-0 mb-3 text-center" type="submit">View Item</button></div>'
                 }
-            })
+                else {
 
-            var div = ""
-
-            if (is_current_user_item){
-
-                div = '<div class="item col-3 my-5 mx-3 text-center bg-white overflow-auto"><img accesskey="' + item.item_id + '" class="item-thumbnail mt-4 mb-4" src="' + item.image + '"><br><div class="item_title overflow-auto mb-1">' + item.title + '</div><p class="buy_sell_price m-1"> $' + item.price + '</p><button id="' + item.item_id + '" class="view btn btn-outline-secondary mt-0 mb-3 text-center" type="submit">View Item</button></div>'
+                    div = '<div class="item col-3 my-5 mx-3 text-center bg-white overflow-auto"><img accesskey="' + item.item_id + '" class="item-thumbnail mt-4 mb-4" src="' + item.image + '"><br><div class="item_title overflow-auto mb-1">' + item.title + '</div><p class="buy_sell_price m-1"> $' + item.price + '</p><button id="' + item.item_id + '" class="view btn btn-outline-secondary mt-0 mb-3 ml-3 float-left" type="submit">View Item</button><button id="' + item.item_id + '" class="add_to_cart btn btn-outline-info mt-0 mb-3 mr-3 float-right" type="submit">Add to cart</button></div>'
+                }
+                $('#items').append(div)
             }
-            else {
-
-                div = '<div class="item col-3 my-5 mx-3 text-center bg-white overflow-auto"><img accesskey="' + item.item_id + '" class="item-thumbnail mt-4 mb-4" src="' + item.image + '"><br><div class="item_title overflow-auto mb-1">' + item.title + '</div><p class="buy_sell_price m-1"> $' + item.price + '</p><button id="' + item.item_id + '" class="view btn btn-outline-secondary mt-0 mb-3 ml-3 float-left" type="submit">View Item</button><button id="' + item.item_id + '" class="add_to_cart btn btn-outline-info mt-0 mb-3 mr-3 float-right" type="submit">Add to cart</button></div>'
-            }
-            $('#items').append(div)
-        }
-    })
-    add_to_cart()
-    view()
-    thumbnail_view()
+        })
+        add_to_cart()
+        view()
+        thumbnail_view()
+    }
 }
+
+
+var search = function(input){
+    var input_to_search = input
+    $.ajax({
+        type: "POST",
+        url: "buy",                
+        dataType : "json",
+        contentType: "text; charset=utf-8",
+        data : input_to_search.toString(),
+        success: function(result){
+            console.log(result);
+            var buyers_search_items = result["buyers_search_items"]
+            getItems(buyers_search_items)
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            console.log(request)
+            console.log(status)
+            console.log(error)
+        }
+    });
+}
+
+var do_search = function(){
+
+    $('#search').on('click', function(e){
+
+        e.preventDefault()
+
+        var input = $('#search_input').val()
+
+        search(input)
+    })
+}
+
+var clearItems = function(){
+    $('#items').empty()
+}
+
 
 var add_item_to_cart = function(new_item){
 	var item_to_add = new_item
@@ -168,7 +219,8 @@ var set_previous = function() {
 
 $(document).ready(function(){
 
-	getItems();
+    do_search()
+	getItems(items);
 	cart()
     do_slide_show()
     set_previous()

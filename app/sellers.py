@@ -2,6 +2,8 @@ from seed import users
 
 sellers = []
 
+sellers_search_items = []
+
 sellers_index = 0
 
 def initiate_sellers():

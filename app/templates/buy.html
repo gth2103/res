@@ -49,8 +49,8 @@
             </h5>
             <hr>
             <form class="form-inline mt-3 mb-0">
-                <input class="form-control mr-2" type="search" placeholder="keyword, borough, or Zip Code" aria-label="Search">
-                <button class="btn btn-info my-2" type="submit">
+                <input id="search_input" class="form-control mr-2" type="search" placeholder="keyword, borough, or Zip Code" aria-label="Search">
+                <button id="search" class="btn btn-info my-2" type="submit">
                     Search
                 </button>
             </form>
@@ -69,6 +69,10 @@
 
         <script type="text/javascript">
             var items = {{items|tojson|safe}}
+        </script>
+
+        <script type="text/javascript">
+            var buyers_search_items = {{buyers_search_items|tojson|safe}}
         </script>
 
         <script type="text/javascript">

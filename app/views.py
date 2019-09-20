@@ -1,10 +1,11 @@
 import logging
 from flask import render_template, Response, request, jsonify, redirect, url_for
 from app import app
-from app.methods import get_index, get_value, set_value, add_to_list, add_data, delete_data
-from app.buyers import buyers, buyers_index
+from app.methods import get_index, get_value, set_value, add_to_list, add_data, delete_data, search
+from app.buyers import buyers, buyers_index, buyers_search_items
 from app.items import items, items_index
 from app.users import users, users_index, current_user
+from app.sellers import sellers_search_items
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
@@ -30,7 +31,15 @@ def buy():
 	global items
 	global current_user
 	global users
-	return render_template('buy.html', items = items, current_user = current_user, users = users)
+	global buyers_search_items
+
+	if request.method == 'POST':
+
+		search(buyers_search_items)
+
+		return jsonify(buyers_search_items = buyers_search_items)
+	else:
+		return render_template('buy.html', items = items, current_user = current_user, users = users, buyers_search_items = buyers_search_items)
 
 @app.route('/add_item', methods=['GET', 'POST'])
 def add_item():

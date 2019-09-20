@@ -30,6 +30,17 @@ def add_data(index):
 
 	set_value(current_user, 'items_list', item_id)
 
+def search(search_list):
+
+	search_in = request.data.decode("utf-8")
+
+	for item in items:
+		for key, value in item.items():
+			if key ==  'title' or key == 'location' or key == 'details':
+				if search_in.lower() in value.lower() and item not in search_list:
+					add_to_list(search_list, item, len(search_list))
+
+
 def get_index(list):
     return len(list)
 
